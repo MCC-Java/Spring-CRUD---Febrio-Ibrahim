@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Region</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse; 
+          width: 35%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: center;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
+    <body>
+        <center>
+        <h1>Hello Spring Boot</h1>
+        <br> 
+
+        <form th:action="@{/search}"  method="GET" > 
+            <input id="txtSearch" type="text" name="keyword"> &nbsp&nbsp&nbsp 
+            <button type="submit">Search</button> 
+        </form>
+            <br>
+        <table> 
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Action</th>  
+            </tr>
+            <tr th:each="as : ${regions}">
+                <td th:text="${as.id}"></td>
+                <td th:text="${as.name}"></td>
+                <td>
+                    <a th:href="@{'/edit/' + ${as.id}}" >Edit</a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+                    <a th:href="@{'/delete/' + ${as.id}}" >Delete</a>
+                </td>
+            </tr>
+        </table>
+        <br> 
+        <a href="newRegion"> Create New Region</a>
+        </center>    
+    </body>
+</html>
